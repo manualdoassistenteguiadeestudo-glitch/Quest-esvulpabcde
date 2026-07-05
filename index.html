@@ -1,0 +1,2473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VULP+ · Treinamento Intensivo</title>
+    <meta name="description" content="Pratique com questões inteligentes geradas por IA. Importe, responda e acompanhe seu desempenho.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== VARIÁVEIS (padrão VULP+) ===== */
+        :root {
+            --bg: #f7f8fb;
+            --surface: #ffffff;
+            --surface-hover: #f8f9fc;
+            --text: #1a1a2e;
+            --text-secondary: #5a5a7a;
+            --text-muted: #8a8aa0;
+            --primary: #4f46e5;
+            --primary-light: #6366f1;
+            --primary-dark: #4338ca;
+            --primary-bg: #eef2ff;
+            --accent: #f59e0b;
+            --accent-light: #fbbf24;
+            --success: #10b981;
+            --success-bg: #ecfdf5;
+            --danger: #ef4444;
+            --danger-bg: #fef2f2;
+            --warning: #f59e0b;
+            --warning-bg: #fffbeb;
+            --border: #e6e8f0;
+            --border-light: #f0f2f7;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.018), 0 1px 2px rgba(0, 0, 0, 0.022);
+            --shadow: 0 2px 6px rgba(0, 0, 0, 0.018), 0 1px 3px rgba(0, 0, 0, 0.022);
+            --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.022), 0 2px 5px rgba(0, 0, 0, 0.022);
+            --shadow-lg: 0 8px 26px rgba(0, 0, 0, 0.028), 0 3px 8px rgba(0, 0, 0, 0.022);
+            --shadow-xl: 0 14px 36px rgba(0, 0, 0, 0.032), 0 4px 12px rgba(0, 0, 0, 0.024);
+            --radius-xs: 6px;
+            --radius-sm: 8px;
+            --radius: 10px;
+            --radius-md: 12px;
+            --radius-lg: 18px;
+            --radius-xl: 22px;
+            --radius-full: 9999px;
+            --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --navbar-height: 64px;
+            --sidebar-width: 280px;
+            --max-width: 1280px;
+        }
+
+        .dark {
+            --bg: #0f0f1a;
+            --surface: #1a1a2e;
+            --surface-hover: #22223a;
+            --text: #e8e8f0;
+            --text-secondary: #b0b0c8;
+            --text-muted: #7a7a96;
+            --primary: #818cf8;
+            --primary-light: #9394f8;
+            --primary-dark: #6d6ff0;
+            --primary-bg: #1e1e3a;
+            --accent: #fbbf24;
+            --accent-light: #fcd34d;
+            --success: #34d399;
+            --success-bg: #0a2e1f;
+            --danger: #f87171;
+            --danger-bg: #2e0f0f;
+            --warning: #fbbf24;
+            --warning-bg: #2e2000;
+            --border: #2a2a40;
+            --border-light: #24243a;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+            --shadow: 0 2px 6px rgba(0, 0, 0, 0.16);
+            --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.2);
+            --shadow-lg: 0 8px 26px rgba(0, 0, 0, 0.24);
+            --shadow-xl: 0 14px 36px rgba(0, 0, 0, 0.28);
+        }
+
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: background var(--transition), color var(--transition);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            letter-spacing: -0.01em;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+            font-size: inherit;
+            color: inherit;
+            transition: all var(--transition);
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            letter-spacing: -0.01em;
+        }
+        button:focus-visible {
+            outline: 2.5px solid var(--primary);
+            outline-offset: 2px;
+            border-radius: var(--radius-sm);
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        ul {
+            list-style: none;
+        }
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: inherit;
+            font-size: inherit;
+            letter-spacing: -0.01em;
+        }
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible {
+            outline: 2.5px solid var(--primary);
+            outline-offset: 2px;
+            border-radius: var(--radius-xs);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: var(--radius-full);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        /* ===== SIDEBAR (padrão VULP+) ===== */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: var(--sidebar-width);
+            background: var(--surface);
+            border-right: 1px solid var(--border-light);
+            box-shadow: var(--shadow-lg);
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            transition: transform var(--transition-slow);
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 0;
+        }
+        .dark .sidebar {
+            background: rgba(26, 26, 46, 0.98);
+            border-right: 1px solid var(--border);
+        }
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 22px;
+            height: var(--navbar-height);
+            border-bottom: 1px solid var(--border-light);
+            flex-shrink: 0;
+            gap: 12px;
+        }
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            font-weight: 700;
+            font-size: 1.22rem;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+        }
+        .sidebar-logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        .sidebar-logo-text .logo-main {
+            font-weight: 800;
+            font-size: 1.22rem;
+            color: var(--primary);
+            letter-spacing: -0.02em;
+        }
+        .sidebar-logo-text .logo-tagline {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+        .sidebar-close-btn {
+            display: none;
+            width: 38px;
+            height: 38px;
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+        }
+        .sidebar-close-btn:hover {
+            background: var(--bg);
+            color: var(--text);
+        }
+        .sidebar-nav {
+            flex: 1;
+            padding: 14px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            overflow-y: auto;
+        }
+        .sidebar-section-title {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            font-weight: 700;
+            padding: 14px 14px 6px;
+            margin-top: 6px;
+        }
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 11px 14px;
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all var(--transition-fast);
+            cursor: pointer;
+            position: relative;
+            white-space: nowrap;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            letter-spacing: -0.01em;
+            border: 1px solid transparent;
+        }
+        .sidebar-item:hover {
+            background: var(--bg);
+            color: var(--text);
+            border-color: var(--border-light);
+        }
+        .sidebar-item.active {
+            background: var(--primary-bg);
+            color: var(--primary);
+            font-weight: 700;
+            border-color: transparent;
+            box-shadow: var(--shadow-sm);
+        }
+        .sidebar-item svg,
+        .sidebar-item .sidebar-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            opacity: 0.8;
+        }
+        .sidebar-item.active svg,
+        .sidebar-item.active .sidebar-icon {
+            opacity: 1;
+        }
+        .sidebar-item .sidebar-icon img {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            filter: brightness(0) saturate(100%) invert(25%) sepia(80%) saturate(5000%) hue-rotate(245deg) brightness(95%) contrast(90%);
+        }
+        .dark .sidebar-item .sidebar-icon img {
+            filter: brightness(0) saturate(100%) invert(50%) sepia(40%) saturate(3000%) hue-rotate(215deg) brightness(105%) contrast(90%);
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 1050;
+            transition: opacity var(--transition-slow);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+        .sidebar-overlay.visible {
+            display: block;
+        }
+
+        /* ===== NAVBAR (padrão VULP+) ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: var(--navbar-height);
+            background: var(--surface);
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 14px;
+            transition: all var(--transition);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .navbar {
+            background: rgba(26, 26, 46, 0.94);
+            border-bottom: 1px solid var(--border);
+        }
+        .hamburger-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            flex-shrink: 0;
+            margin-right: 4px;
+            transition: all var(--transition-fast);
+        }
+        .hamburger-btn:hover {
+            background: var(--bg);
+            color: var(--text);
+        }
+        .navbar-logo {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--primary);
+            white-space: nowrap;
+            flex-shrink: 0;
+            letter-spacing: -0.02em;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.2;
+        }
+        .navbar-logo .logo-tagline {
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: -0.01em;
+        }
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            flex-shrink: 0;
+            margin-left: auto;
+        }
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            position: relative;
+            transition: all var(--transition-fast);
+            flex-shrink: 0;
+        }
+        .nav-btn:hover {
+            background: var(--bg);
+            color: var(--text);
+        }
+        .nav-btn.active-nav {
+            color: var(--primary);
+            background: var(--primary-bg);
+            font-weight: 600;
+        }
+        .nav-btn svg {
+            width: 20px;
+            height: 20px;
+            opacity: 0.8;
+        }
+        .nav-btn.active-nav svg,
+        .nav-btn:hover svg {
+            opacity: 1;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            flex: 1;
+            margin-top: var(--navbar-height);
+            padding: 28px 20px 48px;
+            min-height: calc(100vh - var(--navbar-height));
+            transition: margin-left var(--transition-slow);
+        }
+
+        /* ===== COMPONENTES (estilo VULP+) ===== */
+        .section-header {
+            margin-bottom: 26px;
+        }
+        .section-header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 0.94rem;
+            margin-top: 4px;
+            letter-spacing: -0.01em;
+        }
+        @media (min-width: 768px) {
+            .section-header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            padding: 24px 28px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            transition: all var(--transition-slow);
+            margin-bottom: 24px;
+        }
+        .dark .card {
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .card:hover {
+            box-shadow: var(--shadow-md);
+            border-color: rgba(79, 70, 229, 0.08);
+        }
+
+        .card-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+        .card-title i {
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 18px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.88rem;
+            background: var(--bg);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-light);
+            transition: all var(--transition);
+            cursor: pointer;
+            font-family: inherit;
+            letter-spacing: -0.01em;
+            box-shadow: var(--shadow-sm);
+            min-height: 42px;
+        }
+        .btn:hover {
+            background: var(--surface-hover);
+            color: var(--text);
+            border-color: var(--border);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow);
+        }
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            border-color: var(--primary-dark);
+            color: #fff;
+            box-shadow: 0 6px 18px rgba(79, 70, 229, 0.25);
+        }
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.78rem;
+            min-height: 34px;
+            border-radius: var(--radius-sm);
+        }
+        .btn-outline {
+            background: transparent;
+            border-color: var(--border);
+            color: var(--text-secondary);
+        }
+        .btn-outline:hover {
+            background: var(--bg);
+            color: var(--text);
+            border-color: var(--text-muted);
+        }
+        .btn-success {
+            background: var(--success);
+            color: #fff;
+            border-color: var(--success);
+        }
+        .btn-success:hover {
+            background: #059669;
+            border-color: #059669;
+            box-shadow: 0 6px 18px rgba(16, 185, 129, 0.25);
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: var(--bg);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-light);
+            transition: border var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+            box-shadow: var(--shadow-sm);
+        }
+        .input-wrapper:focus-within {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-bg), var(--shadow-sm);
+            background: var(--surface);
+        }
+        .input-wrapper input,
+        .input-wrapper textarea,
+        .input-wrapper select {
+            flex: 1;
+            padding: 14px 16px;
+            font-size: 0.95rem;
+            background: transparent;
+            color: var(--text);
+            min-height: 48px;
+            border: none;
+            outline: none;
+            font-family: inherit;
+        }
+        .input-wrapper textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .text-muted {
+            color: var(--text-muted);
+        }
+        .text-secondary {
+            color: var(--text-secondary);
+        }
+        .mb-12 {
+            margin-bottom: 12px;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+
+        /* ===== COMPONENTES DO APLICATIVO DE QUESTÕES (mantidos) ===== */
+        .motivational-banner {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: var(--shadow);
+            transition: all var(--transition-slow);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+        .dark .motivational-banner {
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .motivational-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--primary-light));
+            border-radius: 4px 0 0 4px;
+        }
+        .motivational-brain {
+            flex-shrink: 0;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform var(--transition);
+        }
+        .motivational-brain:hover {
+            transform: scale(1.08) rotate(4deg);
+        }
+        .motivational-content {
+            flex: 1;
+            min-width: 0;
+        }
+        .motivational-quote {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.5;
+            font-style: italic;
+        }
+        .motivational-author {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .motivational-author::before {
+            content: '— ';
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .motivational-refresh {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border-light);
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition);
+        }
+        .motivational-refresh:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+            background: var(--primary-bg);
+        }
+
+        .dashboard-inline {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: stretch;
+            margin-bottom: 24px;
+        }
+        .kpi-mini {
+            background: var(--surface);
+            border-radius: var(--radius-sm);
+            padding: 16px 18px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            flex: 1 1 110px;
+            min-width: 100px;
+            transition: all var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .dark .kpi-mini {
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .kpi-mini:hover {
+            box-shadow: var(--shadow-md);
+            border-color: rgba(79, 70, 229, 0.12);
+            transform: translateY(-2px);
+        }
+        .kpi-mini i {
+            font-size: 1.3rem;
+            color: var(--primary);
+            opacity: 0.8;
+        }
+        .kpi-mini-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+        .kpi-mini-label {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-weight: 600;
+        }
+
+        .nivel-inline {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--surface);
+            border-radius: var(--radius-sm);
+            padding: 12px 18px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            flex: 1 1 180px;
+            min-width: 160px;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+        }
+        .dark .nivel-inline {
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .nivel-inline:hover {
+            box-shadow: var(--shadow-md);
+            border-color: rgba(79, 70, 229, 0.12);
+        }
+        .nivel-inline-badge {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 800;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .nivel-inline-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .nivel-inline-titulo {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--text);
+        }
+        .progress-bar-bg-inline {
+            height: 6px;
+            border-radius: 6px;
+            background: var(--border-light);
+            overflow: hidden;
+            margin-top: 4px;
+        }
+        .progress-bar-fill-inline {
+            height: 100%;
+            border-radius: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            transition: width 0.5s ease;
+        }
+        .nivel-inline-xp {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .donut-chart-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 240px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .donut-chart-canvas {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            max-width: 240px;
+        }
+        .donut-center-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            line-height: 1.2;
+            pointer-events: none;
+        }
+        .donut-pct {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .donut-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        .banca-card {
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            padding: 24px 28px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            margin-bottom: 24px;
+        }
+        .dark .banca-card {
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .banca-select-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .banca-select {
+            flex: 1 1 260px;
+            min-width: 180px;
+        }
+        .banca-prompt-area {
+            width: 100%;
+            min-height: 160px;
+            padding: 14px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-light);
+            background: var(--bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            resize: vertical;
+            transition: all var(--transition);
+        }
+        .banca-prompt-area:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-bg);
+        }
+        .banca-acoes {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .btn-copiar-prompt {
+            background: var(--primary);
+            border: none;
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            min-height: 44px;
+            font-family: inherit;
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-copiar-prompt:hover:not(:disabled) {
+            background: var(--primary-dark);
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
+            transform: translateY(-2px);
+        }
+        .btn-copiar-prompt:disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        .banca-feedback {
+            margin-top: 8px;
+            padding: 8px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: none;
+        }
+        .banca-feedback.show {
+            display: block;
+            animation: fadeSlideIn 0.3s ease;
+        }
+        .banca-feedback.success {
+            background: var(--success-bg);
+            color: #065f46;
+            border: 1px solid var(--success);
+        }
+        .dark .banca-feedback.success {
+            color: var(--success);
+        }
+        .banca-feedback.error {
+            background: var(--danger-bg);
+            color: #991b1b;
+            border: 1px solid var(--danger);
+        }
+        .dark .banca-feedback.error {
+            color: var(--danger);
+        }
+
+        .ia-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+            margin-top: 8px;
+        }
+        .ia-link-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            border: 1.5px solid var(--border-light);
+            background: var(--bg);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        .ia-link-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary);
+            background: var(--surface-hover);
+        }
+        .ia-link-card .ia-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            color: #fff;
+        }
+        .ia-icon.chatgpt {
+            background: #10a37f;
+        }
+        .ia-icon.gemini {
+            background: linear-gradient(135deg, #4285F4, #34A853, #FBBC05, #EA4335);
+        }
+        .ia-icon.deepseek {
+            background: #4f6bf7;
+        }
+        .ia-icon.notebooklm {
+            background: #5b5fc7;
+        }
+        .ia-link-card .ia-name {
+            font-weight: 600;
+            font-size: 0.82rem;
+            color: var(--text);
+        }
+        .ia-link-card .ia-hint {
+            font-size: 0.62rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .import-feedback {
+            margin-top: 8px;
+            padding: 10px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: none;
+        }
+        .import-feedback.show {
+            display: block;
+            animation: fadeSlideIn 0.3s ease;
+        }
+        .import-feedback.success {
+            background: var(--success-bg);
+            color: #065f46;
+            border: 1px solid var(--success);
+        }
+        .dark .import-feedback.success {
+            color: var(--success);
+        }
+        .import-feedback.error {
+            background: var(--danger-bg);
+            color: #991b1b;
+            border: 1px solid var(--danger);
+        }
+        .dark .import-feedback.error {
+            color: var(--danger);
+        }
+
+        .questao-card {
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            padding: 24px 28px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 20px;
+            transition: all var(--transition);
+        }
+        .dark .questao-card {
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .questao-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+        .questao-card.resolvida-correta {
+            border-left: 4px solid var(--success);
+        }
+        .questao-card.resolvida-errada {
+            border-left: 4px solid var(--danger);
+        }
+        .questao-numero {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+        .questao-enunciado {
+            font-size: 1.02rem;
+            line-height: 1.7;
+            margin-bottom: 18px;
+            color: var(--text);
+        }
+        .alternativas {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .alternativa-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            background: var(--bg);
+            border: 1.5px solid var(--border-light);
+            transition: all var(--transition-fast);
+            cursor: pointer;
+        }
+        .alternativa-wrapper:hover {
+            border-color: var(--primary);
+            background: var(--primary-bg);
+            transform: translateX(3px);
+        }
+        .alternativa-wrapper.selected {
+            border-color: var(--primary);
+            background: var(--primary-bg);
+            font-weight: 600;
+        }
+        .alternativa-wrapper.correta-revelada {
+            border-color: var(--success);
+            background: var(--success-bg);
+        }
+        .alternativa-wrapper.errada-revelada {
+            border-color: var(--danger);
+            background: var(--danger-bg);
+        }
+        .alternativa-wrapper.disabled {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        .alternativa-wrapper.cortada {
+            text-decoration: line-through;
+            opacity: 0.4;
+            background: var(--danger-bg);
+            border-color: transparent;
+        }
+        .alternativa-radio {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: transparent;
+            transition: all var(--transition-fast);
+        }
+        .alternativa-wrapper.selected .alternativa-radio {
+            border-color: var(--primary);
+            background: var(--primary);
+        }
+        .alternativa-radio::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fff;
+            display: none;
+        }
+        .alternativa-wrapper.selected .alternativa-radio::after {
+            display: block;
+        }
+        .alternativa-texto {
+            flex: 1;
+            font-size: 0.95rem;
+        }
+        .alternativa-tesoura {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid var(--border-light);
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            transition: all var(--transition-fast);
+            flex-shrink: 0;
+        }
+        .alternativa-tesoura:hover {
+            border-color: var(--danger);
+            color: var(--danger);
+            background: var(--danger-bg);
+        }
+        .alternativa-tesoura.ativa {
+            border-color: var(--danger);
+            color: var(--danger);
+            background: var(--danger-bg);
+        }
+
+        .resultado-imediato {
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            margin: 12px 0;
+            font-weight: 600;
+            display: none;
+        }
+        .resultado-imediato.show {
+            display: block;
+            animation: fadeSlideIn 0.3s ease;
+        }
+        .resultado-imediato.acerto {
+            background: var(--success-bg);
+            border: 1px solid var(--success);
+            color: #065f46;
+        }
+        .dark .resultado-imediato.acerto {
+            color: var(--success);
+        }
+        .resultado-imediato.erro {
+            background: var(--danger-bg);
+            border: 1px solid var(--danger);
+            color: #991b1b;
+        }
+        .dark .resultado-imediato.erro {
+            color: var(--danger);
+        }
+
+        .comentario-box {
+            padding: 16px;
+            border-radius: var(--radius-sm);
+            margin-top: 12px;
+            background: var(--bg);
+            border: 1px solid var(--border-light);
+            display: none;
+            line-height: 1.6;
+            text-align: justify;
+        }
+        .comentario-box.show {
+            display: block;
+            animation: fadeSlideIn 0.3s ease;
+        }
+
+        .questao-acoes {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-confirmar {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border: none;
+            color: #fff;
+            font-weight: 700;
+            padding: 12px 28px;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: all var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            min-height: 44px;
+            font-family: inherit;
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-confirmar:hover:not(:disabled) {
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
+            transform: translateY(-2px);
+        }
+        .btn-confirmar:disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        .btn-confirmar:active {
+            transform: translateY(0);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .pagination-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-top: 24px;
+            padding: 16px 0;
+        }
+        .pagination-controls .page-indicator {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            min-width: 100px;
+            text-align: center;
+        }
+        .pagination-controls .btn-pagination {
+            border: 1px solid var(--border-light);
+            background: var(--surface);
+            color: var(--text-secondary);
+            padding: 8px 18px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            min-width: 110px;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-pagination:hover:not(:disabled) {
+            background: var(--primary-bg);
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow);
+        }
+        .btn-pagination:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .toast-container {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            pointer-events: none;
+        }
+        .toast {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-full);
+            padding: 10px 22px;
+            font-weight: 600;
+            animation: toastIn 0.35s cubic-bezier(0.4, 0, 0.2, 1), toastOut 0.35s cubic-bezier(0.4, 0, 0.2, 1) 2.8s forwards;
+            font-size: 0.84rem;
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-md);
+            color: var(--text);
+        }
+        .toast.error {
+            border-color: var(--danger);
+        }
+        .toast i {
+            font-size: 1.1rem;
+        }
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        @keyframes toastOut {
+            from {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(16px) scale(0.95);
+            }
+        }
+
+        .btn-ajuda {
+            background: transparent;
+            border: 1px solid var(--border-light);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all var(--transition);
+            font-size: 1rem;
+        }
+        .btn-ajuda:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-bg);
+        }
+
+        .tour-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 300;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+        }
+        .tour-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .tour-highlight {
+            position: relative;
+            z-index: 310 !important;
+            box-shadow: 0 0 0 4px var(--primary), 0 0 30px rgba(79, 70, 229, 0.4) !important;
+            border-radius: var(--radius-sm) !important;
+        }
+        .tour-tooltip {
+            position: fixed;
+            z-index: 320;
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: 18px 22px;
+            max-width: 340px;
+            box-shadow: var(--shadow-xl);
+            font-size: 0.9rem;
+            color: var(--text);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            line-height: 1.5;
+        }
+        .tour-tooltip.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .tour-tooltip-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-top: 14px;
+        }
+        .tour-tooltip-buttons button {
+            padding: 6px 16px;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid var(--border-light);
+            background: var(--bg);
+            color: var(--text-secondary);
+            font-family: inherit;
+            transition: all var(--transition);
+        }
+        .tour-tooltip-buttons button:hover {
+            background: var(--surface-hover);
+            color: var(--text);
+        }
+        .tour-tooltip-buttons .tour-btn-primary {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #fff;
+        }
+        .tour-tooltip-buttons .tour-btn-primary:hover {
+            background: var(--primary-dark);
+            border-color: var(--primary-dark);
+            box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
+        }
+
+        .app-footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border-light);
+            padding: 20px 24px 16px;
+            margin-top: 16px;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            width: 100%;
+        }
+        .dark .app-footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+        }
+        .footer-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--bg);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            transition: all var(--transition);
+        }
+        .footer-social a:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 12px auto 0;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+        .footer-heart {
+            color: var(--danger);
+            display: inline-block;
+            animation: heartBeat 1.5s infinite;
+        }
+        @keyframes heartBeat {
+            0%,100%{transform:scale(1)}25%{transform:scale(1.15)}50%{transform:scale(1)}
+        }
+
+        @keyframes fadeSlideIn {
+            from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (min-width: 769px) {
+            .hamburger-btn { display: none; }
+            .navbar-logo { display: none; }
+            .sidebar { transform: translateX(0); }
+            .sidebar-overlay { display: none !important; }
+            .main-content { margin-left: var(--sidebar-width); }
+            .navbar { left: var(--sidebar-width); }
+        }
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.open { transform: translateX(0); }
+            .sidebar-close-btn { display: flex; }
+            .main-content { margin-left: 0; }
+            .navbar { left: 0; }
+            .navbar-logo { display: flex; }
+            .banca-select-row { flex-direction: column; align-items: stretch; }
+            .ia-links-grid { grid-template-columns: 1fr 1fr; }
+            .dashboard-inline { flex-direction: column; }
+            .kpi-mini { flex: 1 1 auto; }
+            .nivel-inline { flex: 1 1 auto; }
+        }
+        @media (max-width: 480px) {
+            .navbar { padding: 0 10px; gap: 6px; }
+            .section-header h1 { font-size: 1.45rem; }
+            .card { padding: 18px 16px; }
+            .questao-card { padding: 18px 16px; }
+            .banca-card { padding: 18px 16px; }
+            .motivational-banner { flex-wrap: wrap; justify-content: center; text-align: center; }
+            .ia-links-grid { grid-template-columns: 1fr; }
+            .donut-chart-wrapper { max-width: 180px; }
+            .donut-pct { font-size: 1.6rem; }
+            .pagination-controls { flex-wrap: wrap; gap: 10px; }
+            .pagination-controls .btn-pagination { min-width: 80px; padding: 6px 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== SIDEBAR (estilo VULP+) ===== -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <div class="sidebar-logo-text">
+                    <span class="logo-main">VULP +</span>
+                    <span class="logo-tagline">Estude com inteligência</span>
+                </div>
+            </div>
+            <button class="sidebar-close-btn" onclick="Sidebar.close()" aria-label="Fechar menu">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+        <nav class="sidebar-nav" id="sidebarNav">
+            <a href="https://manualdoassistenteguiadeestudo-glitch.github.io/Home/" class="sidebar-item active">
+                <span class="sidebar-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </span>
+                Home
+            </a>
+        </nav>
+        <div class="sidebar-footer" style="border-top:1px solid var(--border-light);padding:14px;text-align:center;color:var(--text-muted);font-size:0.7rem;">
+            VULP+ v2.0
+        </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="Sidebar.close()"></div>
+
+    <!-- ===== NAVBAR (estilo VULP+) ===== -->
+    <nav class="navbar" id="navbar">
+        <button class="hamburger-btn" onclick="Sidebar.toggle()" aria-label="Abrir menu lateral">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div class="navbar-logo">
+            <span>VULP +</span>
+            <span class="logo-tagline">Estude com inteligência</span>
+        </div>
+        <div class="navbar-actions">
+            <button class="nav-btn" id="topbarThemeToggle" onclick="toggleTheme()" title="Alternar tema" aria-label="Alternar tema">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="theme-icon"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content" id="mainContent">
+        <!-- ===== APP CONTAINER (mesmo do original) ===== -->
+        <div class="app-container">
+
+            <!-- Header do app (mantido igual) -->
+            <div class="app-header">
+                <div class="header-brand">
+                    <div class="brand-text">
+                        <h1>Treinamento Intensivo</h1>
+                        <p>Pratique com questões inteligentes geradas por IA · Dashboard de nível e streak</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button id="backupExportBtn" class="btn btn-sm"><i class="fas fa-download"></i> Backup</button>
+                    <label class="btn btn-sm" for="backupImportFile" style="cursor:pointer;"><i class="fas fa-upload"></i> Restaurar</label>
+                    <input type="file" id="backupImportFile" accept=".json" style="display:none;">
+                    <button id="theme-toggle" class="btn btn-sm" aria-label="Alternar tema"><i class="fas fa-sun" id="theme-icon"></i> <span id="theme-label">Escuro</span></button>
+                </div>
+            </div>
+
+            <!-- Banner motivacional -->
+            <div class="motivational-banner" id="motivationalBanner">
+                <div class="motivational-brain" style="background-image: url('https://res.cloudinary.com/dew6hgzpv/image/upload/basquetebol_axtvhe.png');"></div>
+                <div class="motivational-content">
+                    <div class="motivational-quote" id="motivationalQuote">Carregando...</div>
+                    <div class="motivational-author" id="motivationalAuthor"></div>
+                </div>
+                <button class="motivational-refresh" id="motivationalRefreshBtn" title="Nova frase motivacional"><i class="fas fa-sync-alt"></i></button>
+            </div>
+
+            <!-- Card Donut -->
+            <div class="card" style="text-align:center">
+                <div class="card-title"><i class="fas fa-chart-pie"></i> Taxa de Acertos da Sessão</div>
+                <div class="donut-chart-wrapper">
+                    <canvas id="donutChart" class="donut-chart-canvas" width="280" height="280"></canvas>
+                    <div class="donut-center-text">
+                        <div class="donut-pct" id="donutPct">0%</div>
+                        <div class="donut-label">Taxa de acertos</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard inline -->
+            <div id="dashboardInline">
+                <div class="dashboard-inline">
+                    <div class="kpi-mini"><i class="fas fa-file-alt"></i><div class="kpi-mini-value" id="kpiMiniTotal">0</div><div class="kpi-mini-label">Total</div></div>
+                    <div class="kpi-mini"><i class="fas fa-bullseye"></i><div class="kpi-mini-value" id="kpiMiniTaxa">0%</div><div class="kpi-mini-label">Acerto</div></div>
+                    <div class="kpi-mini"><i class="fas fa-fire"></i><div class="kpi-mini-value" id="kpiMiniStreak">0</div><div class="kpi-mini-label">Dias</div></div>
+                    <div class="kpi-mini"><i class="fas fa-star"></i><div class="kpi-mini-value" id="kpiMiniPontos">0</div><div class="kpi-mini-label">Pontos</div></div>
+                    <div class="nivel-inline">
+                        <div class="nivel-inline-badge" id="nivelInlineBadge">1</div>
+                        <div class="nivel-inline-info">
+                            <div class="nivel-inline-titulo" id="nivelInlineTitulo">Iniciante</div>
+                            <div class="progress-bar-bg-inline"><div class="progress-bar-fill-inline" id="nivelInlineProgress" style="width:0%;"></div></div>
+                            <div class="nivel-inline-xp" id="nivelInlineXp">0/100 XP</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Banca & Prompts -->
+            <div class="banca-card" id="bancaCard">
+                <div class="card-title"><i class="fas fa-university"></i> Prompts por Banca e Assunto</div>
+                <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:16px;">Selecione a banca e digite o assunto desejado para gerar o prompt.</p>
+                <div class="banca-select-row">
+                    <select class="banca-select input-wrapper" id="bancaSelect" aria-label="Selecionar banca organizadora">
+                        <option value="">-- Escolha a banca --</option>
+                    </select>
+                    <input type="text" id="assuntoInput" placeholder="Digite o assunto (ex: Direito Constitucional)" aria-label="Assunto da questão" class="input-wrapper" style="flex:1 1 260px; min-width:180px;">
+                    <button class="btn btn-sm btn-outline" id="btnLimparBanca" title="Limpar seleção"><i class="fas fa-eraser"></i> Limpar</button>
+                </div>
+                <textarea class="banca-prompt-area" id="bancaPromptArea" readonly placeholder="O prompt aparecerá aqui após selecionar banca e digitar o assunto..."></textarea>
+                <div class="banca-acoes">
+                    <button class="btn-copiar-prompt" id="btnCopiarPrompt" disabled><i class="fas fa-copy"></i> Copiar Prompt</button>
+                    <span id="bancaCharCount" style="color:var(--text-muted);font-size:0.8rem;margin-left:auto;"></span>
+                </div>
+                <div class="banca-feedback" id="bancaFeedback"></div>
+            </div>
+
+            <!-- IAs -->
+            <div class="card">
+                <div class="card-title"><i class="fas fa-link"></i> Use com IAs</div>
+                <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:12px;">Copie o prompt gerado e cole em uma das inteligências artificiais abaixo para criar questões automaticamente.</p>
+                <div class="ia-links-grid">
+                    <a href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" class="ia-link-card" title="Abrir ChatGPT">
+                        <div class="ia-icon chatgpt"><i class="fas fa-comment-dots"></i></div>
+                        <div><span class="ia-name">ChatGPT</span><span class="ia-hint">chatgpt.com</span></div>
+                        <i class="fas fa-external-link-alt" style="margin-left:auto;font-size:0.65rem;opacity:0.5;"></i>
+                    </a>
+                    <a href="https://gemini.google.com/app?hl=pt-BR" target="_blank" rel="noopener noreferrer" class="ia-link-card" title="Abrir Gemini">
+                        <div class="ia-icon gemini"><i class="fas fa-gem"></i></div>
+                        <div><span class="ia-name">Gemini</span><span class="ia-hint">gemini.google.com</span></div>
+                        <i class="fas fa-external-link-alt" style="margin-left:auto;font-size:0.65rem;opacity:0.5;"></i>
+                    </a>
+                    <a href="https://chat.deepseek.com/" target="_blank" rel="noopener noreferrer" class="ia-link-card" title="Abrir DeepSeek">
+                        <div class="ia-icon deepseek"><i class="fas fa-brain"></i></div>
+                        <div><span class="ia-name">DeepSeek</span><span class="ia-hint">chat.deepseek.com</span></div>
+                        <i class="fas fa-external-link-alt" style="margin-left:auto;font-size:0.65rem;opacity:0.5;"></i>
+                    </a>
+                    <a href="https://notebooklm.google/" target="_blank" rel="noopener noreferrer" class="ia-link-card" title="Abrir NotebookLM">
+                        <div class="ia-icon notebooklm"><i class="fas fa-book-open"></i></div>
+                        <div><span class="ia-name">NotebookLM</span><span class="ia-hint">notebooklm.google</span></div>
+                        <i class="fas fa-external-link-alt" style="margin-left:auto;font-size:0.65rem;opacity:0.5;"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Importação -->
+            <div class="card" id="cardImportacao">
+                <div style="display:flex;align-items:center;margin-bottom:8px;">
+                    <label style="font-weight:600;color:var(--text-secondary);">📋 Cole aqui suas questões</label>
+                    <button class="btn-ajuda" id="btnAjuda" onclick="Tour.iniciar()" title="Como usar"><i class="fas fa-question-circle"></i></button>
+                </div>
+                <div class="input-wrapper">
+                    <textarea id="importTextarea" placeholder="Cole aqui as questões do seu prompt (geradas por IA)" style="min-height:140px;"></textarea>
+                </div>
+                <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
+                    <button class="btn btn-primary" id="importSubmitBtn" onclick="UI.importarQuestoes()"><i class="fas fa-file-import"></i> Importar questões</button>
+                    <button class="btn btn-outline" onclick="UI.limparImportArea()"><i class="fas fa-eraser"></i> Limpar</button>
+                </div>
+                <div class="import-feedback" id="importFeedback"></div>
+            </div>
+
+            <!-- Questões -->
+            <div id="questoesContainer"></div>
+
+        </div> <!-- fim app-container -->
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="app-footer" role="contentinfo">
+        <div class="footer-inner">
+            <div class="footer-info">
+                <strong>VULP+ · Tecnologia e Educação Colaborativa</strong>
+                <div style="margin-top:4px;">Feito com <span class="footer-heart">❤️</span> para concurseiros de todo o Brasil</div>
+            </div>
+            <ul class="footer-links">
+                <li><a href="#">Política de privacidade</a></li>
+                <li><a href="#">Termos de uso</a></li>
+                <li><a href="#">Segurança</a></li>
+            </ul>
+            <div class="footer-social">
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>VULP+ · 2026 © Todos os direitos reservados</span>
+            <span>🦊 Ninguém estuda sozinho</span>
+        </div>
+    </footer>
+
+    <!-- ===== TOAST ===== -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ===== TOUR ===== -->
+    <div class="tour-overlay" id="tourOverlay"></div>
+    <div class="tour-tooltip" id="tourTooltip">
+        <div id="tourStepIndicator" style="text-align:center;font-size:0.75rem;color:var(--text-muted);margin-bottom:8px;"></div>
+        <div id="tourContent"></div>
+        <div class="tour-tooltip-buttons">
+            <button onclick="Tour.anterior()" id="tourBtnAnterior" style="display:none;">Anterior</button>
+            <button onclick="Tour.pular()" id="tourBtnPular">Pular</button>
+            <button onclick="Tour.proximo()" class="tour-btn-primary" id="tourBtnProximo">Próximo</button>
+        </div>
+    </div>
+
+    <!-- ===== JAVASCRIPT COMPLETO (mesmo do original, com pequenas adaptações) ===== -->
+    <script>
+        (function() {
+
+            // ===== UTILITÁRIOS =====
+            function escapeHtml(s) { if (!s || typeof s !== 'string') return ''; return s.replace(/&/g, '&amp;').replace(/</g,
+                    '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;'); }
+
+            function safeSetLS(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+            function safeGetLS(k, d) { try { var v = localStorage.getItem(k); return v !== null ? v : d; } catch (e) { return d; } }
+
+            function safeParseLS(k, d) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } }
+
+            function formatarTextoComNegrito(t) { if (!t) return ''; var e = t.replace(/&/g, '&amp;').replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;'); return e.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); }
+
+            // ===== SIDEBAR TOGGLE =====
+            window.Sidebar = {
+                toggle: function() {
+                    var s = document.getElementById('sidebar'),
+                        o = document.getElementById('sidebarOverlay');
+                    s.classList.toggle('open');
+                    o.classList.toggle('visible');
+                },
+                close: function() {
+                    document.getElementById('sidebar').classList.remove('open');
+                    document.getElementById('sidebarOverlay').classList.remove('visible');
+                }
+            };
+
+            // ===== TEMA =====
+            function toggleTheme() {
+                var isDark = document.body.classList.toggle('dark');
+                safeSetLS('theme', isDark ? 'dark' : 'light');
+                updateThemeUI();
+                if (typeof drawDonutChart === 'function') drawDonutChart();
+            }
+
+            function updateThemeUI() {
+                var isDark = document.body.classList.contains('dark');
+                var icon = document.getElementById('theme-icon');
+                var label = document.getElementById('theme-label');
+                if (icon) icon.className = 'fas ' + (isDark ? 'fa-moon' : 'fa-sun');
+                if (label) label.textContent = isDark ? 'Claro' : 'Escuro';
+                // topbar icon
+                var topIcon = document.querySelector('#topbarThemeToggle svg');
+                if (topIcon) {
+                    topIcon.innerHTML = isDark ?
+                        '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>' :
+                        '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+                }
+            }
+
+            // Inicializa tema
+            (function() {
+                var theme = safeGetLS('theme', 'dark');
+                if (theme === 'dark') document.body.classList.add('dark');
+                updateThemeUI();
+            })();
+
+            // ===== TOAST =====
+            function toast(msg, tipo) {
+                tipo = tipo || '';
+                var c = document.getElementById('toastContainer');
+                var el = document.createElement('div');
+                el.className = 'toast ' + tipo;
+                var ic = tipo === 'error' ? 'fa-circle-exclamation' : (tipo === 'warning' ? 'fa-exclamation-triangle' :
+                    'fa-circle-check');
+                var icc = tipo === 'error' ? 'var(--danger)' : (tipo === 'warning' ? 'var(--warning)' : 'var(--success)');
+                el.innerHTML = '<i class="fas ' + ic + '" style="color:' + icc + ';"></i> ' + escapeHtml(msg);
+                c.appendChild(el);
+                setTimeout(function() { if (el.parentNode) el.remove(); }, 3200);
+            }
+            window.toast = toast;
+
+            // ===== NOTIFICAÇÕES (simplificado) =====
+            var notifications = [];
+
+            function loadNotifs() { notifications = safeParseLS('vulps_notifications', []); }
+
+            function saveNotifs() { safeSetLS('vulps_notifications', JSON.stringify(notifications)); }
+            loadNotifs();
+            if (notifications.length === 0) {
+                notifications.push({ id: 'welcome_treinamento', type: 'info', message: 'Bem-vindo ao Treinamento Intensivo! 🦊 Pratique com questões inteligentes.',
+                    time: new Date().toISOString(), read: false });
+                saveNotifs();
+            }
+
+            // ===== FRASES MOTIVACIONAIS =====
+            var motivationalPhrases = [
+                { quote: "A persistência é o caminho do êxito.", author: "Charles Chaplin" },
+                { quote: "O sucesso é a soma de pequenos esforços repetidos dia após dia.", author: "Robert Collier" },
+                { quote: "A disciplina é a ponte entre metas e realizações.", author: "Jim Rohn" },
+                { quote: "O conhecimento é o único recurso que se multiplica quando compartilhado.", author: "Adam Grant" },
+                { quote: "O amanhã pertence àqueles que se preparam hoje.", author: "Malcolm X" }
+            ];
+
+            function getDailyPhraseIndex() {
+                var t = new Date().toISOString().split('T')[0];
+                var h = 0;
+                for (var i = 0; i < t.length; i++) { h = ((h << 5) - h) + t.charCodeAt(i);
+                    h |= 0; }
+                return Math.abs(h) % motivationalPhrases.length;
+            }
+
+            function updateMotivationalQuote() {
+                var s = safeGetLS('vulps_motivational_index', null);
+                var ti = getDailyPhraseIndex();
+                var idx = ti;
+                if (s !== null && s === ti.toString()) idx = ti;
+                else safeSetLS('vulps_motivational_index', ti.toString());
+                var p = motivationalPhrases[idx];
+                document.getElementById('motivationalQuote').textContent = '"' + p.quote + '"';
+                document.getElementById('motivationalAuthor').textContent = p.author;
+            }
+
+            function refreshMotivationalQuote() {
+                var ni = Math.floor(Math.random() * motivationalPhrases.length);
+                safeSetLS('vulps_motivational_index', ni.toString());
+                updateMotivationalQuote();
+            }
+            document.getElementById('motivationalRefreshBtn').addEventListener('click', refreshMotivationalQuote);
+            updateMotivationalQuote();
+
+            // ===== STORAGE =====
+            var Storage = {
+                _key: 'vulps_treinamento_data',
+                _default: { respostas: [], pontos: 0, streak: 0, ultimaData: null },
+                carregar: function() {
+                    try {
+                        var r = localStorage.getItem(this._key);
+                        if (!r) return JSON.parse(JSON.stringify(this._default));
+                        return { ...this._default, ...JSON.parse(r) };
+                    } catch (e) { return JSON.parse(JSON.stringify(this._default)); }
+                },
+                salvar: function(d) { safeSetLS(this._key, JSON.stringify(d)); },
+                adicionarResposta: function(r) {
+                    var d = this.carregar();
+                    d.respostas.push(r);
+                    if (r.acertou) d.pontos += 10;
+                    else d.pontos = Math.max(0, d.pontos - 2);
+                    var hoje = new Date().toISOString().split('T')[0];
+                    if (d.ultimaData !== hoje) {
+                        var ontem = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+                        d.streak = (d.ultimaData === ontem) ? d.streak + 1 : 1;
+                        d.ultimaData = hoje;
+                    }
+                    this.salvar(d);
+                    return d;
+                }
+            };
+            window.Storage = Storage;
+
+            // ===== BACKUP =====
+            function exportBackup() {
+                var data = {
+                    theme: safeGetLS('theme', 'dark'),
+                    notifications: safeParseLS('vulps_notifications', []),
+                    motivational_index: safeGetLS('vulps_motivational_index', '0'),
+                    treinamento_data: Storage.carregar(),
+                    export_date: new Date().toISOString(),
+                    version: '1.0'
+                };
+                var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                var url = URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = 'vulps_backup_' + new Date().toISOString().slice(0, 10) + '.json';
+                a.click();
+                URL.revokeObjectURL(url);
+                toast('Backup exportado com sucesso!');
+            }
+            window.exportBackup = exportBackup;
+            document.getElementById('backupExportBtn').addEventListener('click', exportBackup);
+
+            document.getElementById('backupImportFile').addEventListener('change', function(e) {
+                if (!this.files[0]) return;
+                var reader = new FileReader();
+                reader.onload = function(ev) {
+                    try {
+                        var data = JSON.parse(ev.target.result);
+                        if (!data.version) throw new Error('Formato inválido');
+                        safeSetLS('theme', data.theme || 'dark');
+                        safeSetLS('vulps_notifications', JSON.stringify(data.notifications || []));
+                        safeSetLS('vulps_motivational_index', data.motivational_index || '0');
+                        safeSetLS(Storage._key, JSON.stringify(data.treinamento_data || Storage._default));
+                        toast('Backup restaurado! Recarregue a página.');
+                        setTimeout(function() { location.reload(); }, 1500);
+                    } catch (err) { toast('Arquivo de backup inválido.', 'error'); }
+                };
+                reader.readAsText(this.files[0]);
+                this.value = '';
+            });
+
+            // ===== LOCAL ENGINE =====
+            var LocalEngine = {
+                _banco: {
+                    'Direito Administrativo': [{ enunciado: 'No âmbito da administração pública, o princípio que exige a divulgação oficial dos atos administrativos é da:',
+                            alternativas: ['A) Moralidade', 'B) Publicidade', 'C) Impessoalidade', 'D) Eficiência',
+                                'E) Legalidade'
+                            ], gabarito: 1, comentario: 'O princípio da publicidade (art. 37, CF/88) exige transparência.' }],
+                    'Português': [{ enunciado: 'Crase incorreta em:', alternativas: ['A) Fui à cidade',
+                            'B) Referiu-se àquela', 'C) Entreguei à Vossa Senhoria', 'D) Até à praça', 'E) Às 14h'
+                        ], gabarito: 2, comentario: 'Não há crase antes de pronome de tratamento.' }],
+                    'Informática': [{ enunciado: 'Função Excel para média:', alternativas: ['A) SOMA', 'B) MÉDIA',
+                            'C) MED', 'D) CONT.NÚM', 'E) DESVPAD'
+                        ], gabarito: 1, comentario: 'MÉDIA calcula a média aritmética.' }],
+                },
+                gerarQuestoes: function(tema, qtd) {
+                    var t = this._banco[tema] || [{ enunciado: 'Questão sobre ' + tema + '.', alternativas: ['A) A',
+                            'B) B', 'C) C', 'D) D', 'E) E'
+                        ], gabarito: 0, comentario: 'Explicação sobre ' + tema + '.' }];
+                    return Array.from({ length: qtd }, function(_, i) { return { ...t[i % t.length] }; });
+                }
+            };
+
+            // ===== PARSER =====
+            var ImportParser = {
+                parse: function(texto) {
+                    if (!texto || !texto.trim()) return [];
+                    var tl = texto.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+                    var blocos = this._dividirEmBlocos(tl);
+                    var qs = [];
+                    for (var b of blocos) {
+                        var q = this._parseBloco(b);
+                        if (q && q.alternativas.length >= 2) {
+                            while (q.alternativas.length < 5) q.alternativas.push(String.fromCharCode(65 + q.alternativas
+                                .length) + ') [Não identificada]');
+                            if (q.alternativas.length > 5) q.alternativas = q.alternativas.slice(0, 5);
+                            qs.push({ enunciado: q.enunciado || 'Enunciado não identificado', alternativas: q
+                                    .alternativas, gabarito: q.gabarito !== null ? q.gabarito : null,
+                                comentario: q.comentario || null });
+                        }
+                    }
+                    return qs;
+                },
+                _dividirEmBlocos: function(texto) {
+                    var ls = texto.split('\n');
+                    var bs = [];
+                    var ba = [];
+                    for (var i = 0; i < ls.length; i++) {
+                        var l = ls[i].trim();
+                        var ini = /^(questão\s*\d+|q\d+|\d+[\.\)]\s+|[IVX]+[\.\)]\s+)/i.test(l) && !/^[A-Ea-e][\.\)]\s*/.test(
+                        l);
+                        if (ini && ba.length && this._temConteudo(ba)) { bs.push(ba.join('\n'));
+                            ba = []; }
+                        ba.push(ls[i]);
+                    }
+                    if (ba.length && this._temConteudo(ba)) bs.push(ba.join('\n'));
+                    if (!bs.length && texto.trim().length > 20) bs.push(texto);
+                    return bs;
+                },
+                _temConteudo: function(ls) { var t = ls.join('\n').trim(); return /[A-Ea-e][\.\)]\s*/i.test(t) || t
+                        .length > 50; },
+                _parseBloco: function(bloco) {
+                    var ls = bloco.split('\n').map(function(l) { return l.trim(); }).filter(function(l) { return l; });
+                    if (!ls.length) return null;
+                    var en = '',
+                        alts = [],
+                        gab = null,
+                        com = null,
+                        ea = false,
+                        ec = false;
+                    for (var l of ls) {
+                        if (/^(questão\s*\d+|q\d+|[IVX]+[\.\)]|\d+[\.\)])\s*$/i.test(l)) continue;
+                        var am = l.match(/^\(?([A-Ea-e])\)?[\.\s]\s*(.+)/);
+                        if (am && !ec) { ea = true;
+                            alts.push(am[1].toUpperCase() + ') ' + am[2].trim());
+                            continue; }
+                        var gm = l.match(/^(gabarito|resposta|correta|gab)[:\s]+([A-Ea-e])/i);
+                        if (gm) { gab = gm[2].toUpperCase().charCodeAt(0) - 65;
+                            ea = false;
+                            continue; }
+                        if (/^(comentário|explicação|justificativa|comentario|explicacao)[:\s]/i.test(l)) { ec = true;
+                            ea = false;
+                            com = l.replace(/^[^:]+:\s*/, '');
+                            continue; }
+                        if (ec) { com = (com ? com + '\n' : '') + l;
+                            continue; }
+                        if (!ea && !ec) en = (en ? en + '\n' : '') + l;
+                    }
+                    if (gab === null) { var m = bloco.match(/(?:gabarito|resposta|correta)\s*[:=]\s*([A-Ea-e])/i); if (m)
+                            gab = m[1].toUpperCase().charCodeAt(0) - 65; }
+                    return { enunciado: en.trim(), alternativas: alts, gabarito: gab, comentario: com ? com.trim() :
+                            null };
+                }
+            };
+
+            // ===== BANCAS =====
+            var BANCAS = [
+                { id: 'fcc', nome: 'Fundação Carlos Chagas - FCC' },
+                { id: 'fgv', nome: 'Fundação Getúlio Vargas - FGV' },
+                { id: 'cebraspe', nome: 'Cebraspe / Cespe (a, b, c, d, e)' },
+                { id: 'ibfc', nome: 'IBFC' },
+                { id: 'cesgranrio', nome: 'Cesgranrio' },
+                { id: 'iades', nome: 'IADES' },
+                { id: 'quadrix', nome: 'QUADRIX' },
+                { id: 'idecan', nome: 'IDECAN' },
+                { id: 'consulplan', nome: 'CONSULPLAN' }
+            ];
+
+            function gerarPrompt(bancaNome, assunto) {
+                if (!bancaNome || !assunto) return '';
+                return 'Sua tarefa é gerar questões de múltipla escolha com 5 alternativas (A, B, C, D, E).\n\n📌 Banca: ' +
+                    bancaNome + '\n📌 Assunto: ' + assunto +
+                    '\nQuantidade: 20\n\n📌 Formato:\nQuestão [número] (' + bancaNome +
+                    ')\nEnunciado: [texto sobre ' + assunto +
+                    ']\nA) [alternativa]\nB) [alternativa]\nC) [alternativa]\nD) [alternativa]\nE) [alternativa]\n\nGabarito: [letra]\n\nComentário: [explicação detalhada]';
+            }
+
+            var BancaManager = {
+                inicializar: function() {
+                    var sBanca = document.getElementById('bancaSelect');
+                    BANCAS.forEach(function(b) { var o = document.createElement('option');
+                        o.value = b.id;
+                        o.textContent = b.nome;
+                        sBanca.appendChild(o); });
+                    sBanca.addEventListener('change', function() { this.atualizarPrompt(); }.bind(this));
+                    document.getElementById('assuntoInput').addEventListener('input', function() { this.atualizarPrompt(); }
+                        .bind(this));
+                    document.getElementById('btnCopiarPrompt').addEventListener('click', function() { this.copiar(); }.bind(
+                        this));
+                    document.getElementById('btnLimparBanca').addEventListener('click', function() { this.limpar(); }.bind(
+                        this));
+                },
+                atualizarPrompt: function() {
+                    var idBanca = document.getElementById('bancaSelect').value;
+                    var assunto = document.getElementById('assuntoInput').value.trim();
+                    var banca = BANCAS.find(function(b) { return b.id === idBanca; });
+                    var promptArea = document.getElementById('bancaPromptArea');
+                    var btnCopiar = document.getElementById('btnCopiarPrompt');
+                    if (banca && assunto) { promptArea.value = gerarPrompt(banca.nome, assunto);
+                        btnCopiar.disabled = false; } else { promptArea.value = '';
+                        btnCopiar.disabled = true; }
+                    document.getElementById('bancaCharCount').textContent = promptArea.value.length + ' caracteres';
+                },
+                async copiar() {
+                    var p = document.getElementById('bancaPromptArea').value;
+                    if (!p) return;
+                    try {
+                        await navigator.clipboard.writeText(p);
+                        this.feedback('✅ Prompt copiado para a área de transferência!', 'success');
+                    } catch (e) {
+                        var ta = document.createElement('textarea');
+                        ta.value = p;
+                        ta.style.position = 'fixed';
+                        ta.style.opacity = '0';
+                        document.body.appendChild(ta);
+                        ta.select();
+                        try { document.execCommand('copy');
+                            this.feedback('✅ Prompt copiado para a área de transferência!', 'success'); } catch (err) { this
+                                .feedback('❌ Não foi possível copiar. Selecione o texto manualmente.', 'error'); }
+                        document.body.removeChild(ta);
+                    }
+                },
+                limpar: function() {
+                    document.getElementById('bancaSelect').value = '';
+                    document.getElementById('assuntoInput').value = '';
+                    document.getElementById('bancaPromptArea').value = '';
+                    document.getElementById('btnCopiarPrompt').disabled = true;
+                    document.getElementById('bancaCharCount').textContent = '0 caracteres';
+                },
+                feedback: function(msg, tipo) {
+                    var fb = document.getElementById('bancaFeedback');
+                    fb.textContent = msg;
+                    fb.className = 'banca-feedback show ' + tipo;
+                    setTimeout(function() { fb.classList.remove('show', 'success', 'error'); }, 3000);
+                }
+            };
+
+            // ===== QUESTOES PADRAO =====
+            var QUESTOES_PADRAO =
+                'Questão 1\nEnunciado: Determinado órgão público decidiu divulgar, em seu site oficial, informações detalhadas sobre gastos com contratos administrativos. Tal conduta está relacionada a qual princípio?\nA) Legalidade\nB) Publicidade\nC) Moralidade\nD) Eficiência\nE) Impessoalidade\nGabarito: B\nComentário: O princípio da publicidade impõe à Administração o dever de dar transparência.\n\n---\n\nQuestão 2\nEnunciado: Um prefeito utiliza recursos públicos para divulgar propaganda com seu nome e slogan. Tal conduta viola:\nA) Eficiência\nB) Publicidade\nC) Impessoalidade\nD) Legalidade\nE) Moralidade\nGabarito: C\nComentário: O princípio da impessoalidade veda a promoção pessoal de agentes públicos.\n\n---\n\nQuestão 3\nEnunciado: Servidor recusa cumprir ordem manifestamente ilegal de superior. Tal conduta respalda-se em:\nA) Eficiência\nB) Moralidade\nC) Publicidade\nD) Legalidade\nE) Impessoalidade\nGabarito: D\nComentário: O princípio da legalidade determina que a Administração só pode agir conforme a lei.';
+
+            // ===== UI PRINCIPAL =====
+            var UI = {
+                currentTema: 'Direito Administrativo',
+                currentQuestoes: [],
+                respostasUsuario: {},
+                alternativasCortadas: {},
+                questoesConfirmadas: {},
+                questoesPorPagina: 6,
+                paginaAtual: 1,
+
+                importarQuestoes: function() {
+                    var t = document.getElementById('importTextarea').value.trim();
+                    var fb = document.getElementById('importFeedback');
+                    fb.classList.remove('show', 'success', 'error');
+                    if (!t) { fb.textContent = '⚠️ Cole um texto com questões.';
+                        fb.classList.add('show', 'error'); return; }
+                    var p = ImportParser.parse(t);
+                    if (!p.length) { fb.textContent = '❌ Não foi possível identificar questões.';
+                        fb.classList.add('show', 'error'); return; }
+                    this.paginaAtual = 1;
+                    this.mostrarQuestoes(p);
+                    fb.textContent = '✅ ' + p.length + ' questão(ões) importada(s)!';
+                    fb.classList.add('show', 'success');
+                    document.getElementById('importTextarea').value = '';
+                },
+                limparImportArea: function() { document.getElementById('importTextarea').value = '';
+                    document.getElementById('importFeedback').classList.remove('show', 'success', 'error'); },
+                carregarQuestoesPadrao: function() { var p = ImportParser.parse(QUESTOES_PADRAO); if (p.length) this
+                        .mostrarQuestoes(p); },
+                mostrarQuestoes: function(q) { this.currentQuestoes = q;
+                    this.respostasUsuario = {};
+                    this.alternativasCortadas = {};
+                    this.questoesConfirmadas = {};
+                    this.paginaAtual = 1;
+                    this._renderizarPagina(); },
+                _renderizarPagina: function() {
+                    var totalPaginas = Math.ceil(this.currentQuestoes.length / this.questoesPorPagina);
+                    if (this.paginaAtual > totalPaginas) this.paginaAtual = totalPaginas;
+                    if (this.paginaAtual < 1) this.paginaAtual = 1;
+                    var inicio = (this.paginaAtual - 1) * this.questoesPorPagina;
+                    var fim = Math.min(inicio + this.questoesPorPagina, this.currentQuestoes.length);
+                    var questoesPagina = this.currentQuestoes.slice(inicio, fim);
+                    var container = document.getElementById('questoesContainer');
+                    var html = '';
+                    for (var idxRel = 0; idxRel < questoesPagina.length; idxRel++) {
+                        var idxAbs = inicio + idxRel;
+                        html += this._htmlQuestao(questoesPagina[idxRel], idxAbs);
+                    }
+                    html += '<div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:16px;">' +
+                        '<button class="btn btn-sm btn-outline" onclick="UI.gerarMaisIguais()"><i class="fas fa-redo"></i> Gerar mais iguais</button>' +
+                        '<button class="btn btn-sm btn-outline" onclick="UI.aumentarDificuldade()"><i class="fas fa-arrow-up"></i> Aumentar dificuldade</button>' +
+                        '</div>';
+                    container.innerHTML = html;
+                    container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    this._renderizarControlesPaginacao(totalPaginas);
+                    drawDonutChart();
+                },
+                _htmlQuestao: function(q, idx) {
+                    var id = idx.toString();
+                    var enf = formatarTextoComNegrito(q.enunciado);
+                    var alts = q.alternativas.map(function(a) { return formatarTextoComNegrito(a); });
+                    var altsHtml = '';
+                    for (var i = 0; i < alts.length; i++) {
+                        altsHtml +=
+                            '<div class="alternativa-wrapper" id="alt-wrapper-' + id + '-' + i + '" onclick="UI.selecionarAlternativa(\'' +
+                            id + '\',' + i + ')">' +
+                            '<div class="alternativa-radio" id="alt-radio-' + id + '-' + i + '"></div>' +
+                            '<span class="alternativa-texto">' + alts[i] + '</span>' +
+                            '<button class="alternativa-tesoura" id="alt-tesoura-' + id + '-' + i + '" onclick="UI.toggleCortarAlternativa(event,\'' +
+                            id + '\',' + i + ')" title="Eliminar"><i class="fas fa-cut"></i></button>' +
+                            '</div>';
+                    }
+                    return '<div class="questao-card" id="questao-' + id + '">' +
+                        '<div class="questao-numero">Questão ' + (idx + 1) + '</div>' +
+                        '<div class="questao-enunciado">' + enf + '</div>' +
+                        '<div class="alternativas" id="alternativas-' + id + '">' + altsHtml + '</div>' +
+                        '<div class="resultado-imediato" id="resultado-' + id + '"></div>' +
+                        '<div class="comentario-box" id="comentario-' + id + '"></div>' +
+                        '<div class="questao-acoes" id="acoes-questao-' + id + '" style="display:none;">' +
+                        '<button class="btn btn-sm btn-outline" onclick="UI.mostrarComentario(\'' + id +
+                        '\')"><i class="fas fa-comment-dots"></i> Ver comentário</button>' +
+                        '<button class="btn btn-sm btn-outline" onclick="UI.gerarMaisComoEssa(\'' + id +
+                        '\')"><i class="fas fa-sync-alt"></i> Mais como essa</button>' +
+                        '</div>' +
+                        '<div style="text-align:center;margin-top:12px;">' +
+                        '<button class="btn-confirmar" id="btn-confirmar-' + id +
+                        '" onclick="UI.confirmarResposta(\'' + id + '\')" disabled><i class="fas fa-check-circle"></i> Confirmar resposta</button>' +
+                        '</div></div>';
+                },
+                _renderizarControlesPaginacao: function(totalPaginas) {
+                    var controles = document.getElementById('paginationControls');
+                    if (controles) controles.remove();
+                    if (totalPaginas <= 1) return;
+                    controles = document.createElement('div');
+                    controles.className = 'pagination-controls';
+                    controles.id = 'paginationControls';
+                    controles.innerHTML = '<button class="btn-pagination" id="prevPageBtn" ' + (this.paginaAtual === 1 ?
+                        'disabled' : '') + '><i class="fas fa-chevron-left"></i> Anterior</button>' +
+                        '<span class="page-indicator">Página ' + this.paginaAtual + ' de ' + totalPaginas +
+                        '</span>' +
+                        '<button class="btn-pagination" id="nextPageBtn" ' + (this.paginaAtual === totalPaginas ?
+                            'disabled' : '') + '>Próximo <i class="fas fa-chevron-right"></i></button>';
+                    var container = document.getElementById('questoesContainer');
+                    container.parentNode.insertBefore(controles, container.nextSibling);
+                    document.getElementById('prevPageBtn').addEventListener('click', function() {
+                        if (UI.paginaAtual > 1) { UI.paginaAtual--;
+                            UI._renderizarPagina(); }
+                    });
+                    document.getElementById('nextPageBtn').addEventListener('click', function() {
+                        if (UI.paginaAtual < totalPaginas) { UI.paginaAtual++;
+                            UI._renderizarPagina(); }
+                    });
+                },
+                selecionarAlternativa: function(qId, aIdx) {
+                    if (this.questoesConfirmadas[qId]) return;
+                    document.querySelectorAll('#alternativas-' + qId + ' .alternativa-wrapper').forEach(function(w) { w
+                            .classList.remove('selected'); });
+                    document.getElementById('alt-wrapper-' + qId + '-' + aIdx).classList.add('selected');
+                    document.getElementById('btn-confirmar-' + qId).disabled = false;
+                    this.respostasUsuario[qId] = aIdx;
+                },
+                toggleCortarAlternativa: function(ev, qId, aIdx) {
+                    ev.stopPropagation();
+                    if (this.questoesConfirmadas[qId]) return;
+                    if (!this.alternativasCortadas[qId]) this.alternativasCortadas[qId] = new Set();
+                    var wrapper = document.getElementById('alt-wrapper-' + qId + '-' + aIdx);
+                    var btn = document.getElementById('alt-tesoura-' + qId + '-' + aIdx);
+                    if (this.alternativasCortadas[qId].has(aIdx)) { this.alternativasCortadas[qId].delete(aIdx);
+                        wrapper.classList.remove('cortada');
+                        btn.classList.remove('ativa'); } else { this.alternativasCortadas[qId].add(aIdx);
+                        wrapper.classList.add('cortada');
+                        btn.classList.add('ativa'); }
+                },
+                confirmarResposta: function(qId) {
+                    var aIdx = this.respostasUsuario[qId];
+                    if (aIdx === undefined) return;
+                    var q = this.currentQuestoes[parseInt(qId)];
+                    var acertou = aIdx === q.gabarito;
+                    document.querySelectorAll('#alternativas-' + qId + ' .alternativa-wrapper').forEach(function(w, i) {
+                        w.classList.add('disabled');
+                        if (i === q.gabarito) w.classList.add('correta-revelada');
+                        if (i === aIdx && !acertou) w.classList.add('errada-revelada');
+                    });
+                    var res = document.getElementById('resultado-' + qId);
+                    res.classList.add('show', acertou ? 'acerto' : 'erro');
+                    res.innerHTML = acertou ? '✅ <strong>Você acertou!</strong>' :
+                        '❌ <strong>Você errou!</strong> O gabarito é <strong>' + String.fromCharCode(65 + q.gabarito) +
+                        '</strong>.';
+                    document.getElementById('acoes-questao-' + qId).style.display = 'flex';
+                    document.getElementById('btn-confirmar-' + qId).style.display = 'none';
+                    this.questoesConfirmadas[qId] = true;
+                    Storage.adicionarResposta({ questaoId: Date.now() + '-' + qId, tema: this.currentTema, acertou: acertou,
+                        data: new Date().toISOString() });
+                    this.atualizarDashboardInline();
+                    drawDonutChart();
+                },
+                mostrarComentario: function(qId) {
+                    var box = document.getElementById('comentario-' + qId);
+                    if (box.classList.contains('show')) { box.classList.remove('show'); return; }
+                    var q = this.currentQuestoes[parseInt(qId)];
+                    box.innerHTML = '<strong>📝 Comentário:</strong><br><br>' + formatarTextoComNegrito(q.comentario ||
+                        'Sem comentário.');
+                    box.classList.add('show');
+                },
+                gerarMaisComoEssa: function(qId) { var novas = LocalEngine.gerarQuestoes(this.currentTema, 1);
+                    this.currentQuestoes.push.apply(this.currentQuestoes, novas);
+                    this.paginaAtual = Math.ceil(this.currentQuestoes.length / this.questoesPorPagina);
+                    this._renderizarPagina(); },
+                gerarMaisIguais: function() { var novas = LocalEngine.gerarQuestoes(this.currentTema, 3);
+                    this.currentQuestoes.push.apply(this.currentQuestoes, novas);
+                    this.paginaAtual = Math.ceil(this.currentQuestoes.length / this.questoesPorPagina);
+                    this._renderizarPagina(); },
+                aumentarDificuldade: function() { var novas = LocalEngine.gerarQuestoes(this.currentTema, 3);
+                    this.mostrarQuestoes(novas); },
+                atualizarDashboardInline: function() {
+                    var d = Storage.carregar();
+                    var t = d.respostas.length;
+                    var c = d.respostas.filter(function(r) { return r.acertou; }).length;
+                    var tx = t ? Math.round((c / t) * 100) : 0;
+                    document.getElementById('kpiMiniTotal').textContent = t;
+                    document.getElementById('kpiMiniTaxa').textContent = tx + '%';
+                    document.getElementById('kpiMiniStreak').textContent = d.streak;
+                    document.getElementById('kpiMiniPontos').textContent = d.pontos;
+                    var n = Math.floor(d.pontos / 100) + 1;
+                    var xp = d.pontos % 100;
+                    var titulos = ['Iniciante', 'Estudante', 'Concurseiro', 'Especialista', 'Mestre', 'Lenda'];
+                    document.getElementById('nivelInlineBadge').textContent = n;
+                    document.getElementById('nivelInlineTitulo').textContent = titulos[Math.min(n - 1, 5)];
+                    document.getElementById('nivelInlineProgress').style.width = (xp / 100 * 100) + '%';
+                    document.getElementById('nivelInlineXp').textContent = xp + '/100 XP';
+                }
+            };
+            window.UI = UI;
+
+            // ===== DONUT CHART =====
+            function drawDonutChart() {
+                var canvas = document.getElementById('donutChart');
+                if (!canvas) return;
+                var ctx = canvas.getContext('2d');
+                var dpr = window.devicePixelRatio || 1;
+                var rect = canvas.getBoundingClientRect();
+                canvas.width = rect.width * dpr;
+                canvas.height = rect.height * dpr;
+                ctx.scale(dpr, dpr);
+                var w = rect.width,
+                    h = rect.height,
+                    cx = w / 2,
+                    cy = h / 2,
+                    radius = Math.min(w, h) * 0.38;
+                ctx.clearRect(0, 0, w, h);
+                var respondidas = UI.currentQuestoes.filter(function(_, i) { return UI.questoesConfirmadas[i]; });
+                var total = respondidas.length;
+                var certas = respondidas.filter(function(q, i) { return UI.respostasUsuario[UI.currentQuestoes.indexOf(q)] ===
+                        q.gabarito; }).length;
+                var erradas = total - certas;
+                var pct = total ? (certas / total) * 100 : 0;
+                ctx.beginPath();
+                ctx.arc(cx, cy, radius, 0, 2 * Math.PI);
+                ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--border-light').trim() ||
+                    '#e6e8f0';
+                ctx.lineWidth = 14;
+                ctx.stroke();
+                var accentColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim() ||
+                    '#4f46e5';
+                var dangerColor = getComputedStyle(document.documentElement).getPropertyValue('--danger').trim() ||
+                    '#ef4444';
+                var startAngle = -Math.PI / 2;
+                var erroAngle = total ? (erradas / total) * 2 * Math.PI : 0;
+                var acertoAngle = total ? (certas / total) * 2 * Math.PI : 0;
+                if (total > 0 && erradas > 0) { ctx.beginPath();
+                    ctx.arc(cx, cy, radius, startAngle, startAngle + erroAngle);
+                    ctx.strokeStyle = dangerColor;
+                    ctx.lineWidth = 14;
+                    ctx.lineCap = 'round';
+                    ctx.stroke(); }
+                if (total > 0 && certas > 0) { ctx.beginPath();
+                    ctx.arc(cx, cy, radius, startAngle + erroAngle, startAngle + erroAngle + acertoAngle);
+                    ctx.strokeStyle = accentColor;
+                    ctx.lineWidth = 14;
+                    ctx.lineCap = 'round';
+                    ctx.stroke(); }
+                document.getElementById('donutPct').textContent = total ? pct.toFixed(0) + '%' : '0%';
+            }
+            window.drawDonutChart = drawDonutChart;
+            window.addEventListener('resize', function() { drawDonutChart(); });
+
+            // ===== TOUR =====
+            var Tour = {
+                etapas: [
+                    { target: function() { return document.getElementById('importTextarea'); }, titulo: '📋 Área de importação',
+                        descricao: 'Cole aqui o texto com as questões geradas por qualquer IA.' },
+                    { target: function() { return document.getElementById('importSubmitBtn'); },
+                        titulo: '🚀 Importar questões', descricao: 'Transforme o texto em simulado interativo com gabarito.' },
+                    { target: function() { return document.getElementById('bancaCard'); },
+                        titulo: '🎯 Prompts por Banca e Assunto',
+                        descricao: 'Escolha a banca e digite o assunto desejado.' },
+                    { target: function() { return document.getElementById('dashboardInline'); },
+                        titulo: '📊 Desempenho', descricao: 'Acompanhe total, taxa de acerto, streak e nível.' }
+                ],
+                etapaAtual: 0,
+                ativo: false,
+                iniciar: function() {
+                    if (this.ativo) return;
+                    this.ativo = true;
+                    this.etapaAtual = 0;
+                    document.getElementById('tourOverlay').classList.add('active');
+                    document.getElementById('tourTooltip').classList.add('active');
+                    this.atualizarEtapa();
+                },
+                finalizar: function() {
+                    this.ativo = false;
+                    document.getElementById('tourOverlay').classList.remove('active');
+                    document.getElementById('tourTooltip').classList.remove('active');
+                    this._removerDestaque();
+                },
+                pular: function() { this.finalizar(); },
+                proximo: function() {
+                    if (this.etapaAtual < this.etapas.length - 1) { this.etapaAtual++;
+                        this.atualizarEtapa(); } else this.finalizar();
+                },
+                anterior: function() {
+                    if (this.etapaAtual > 0) { this.etapaAtual--;
+                        this.atualizarEtapa(); }
+                },
+                atualizarEtapa: function() {
+                    var e = this.etapas[this.etapaAtual];
+                    var t = e.target();
+                    if (!t) { this.proximo(); return; }
+                    this._removerDestaque();
+                    t.classList.add('tour-highlight');
+                    document.getElementById('tourStepIndicator').textContent = 'Passo ' + (this.etapaAtual + 1) + ' de ' +
+                        this.etapas.length;
+                    document.getElementById('tourContent').innerHTML = '<strong>' + e.titulo + '</strong><br>' + e
+                    .descricao;
+                    this._posicionar(t);
+                    document.getElementById('tourBtnAnterior').style.display = this.etapaAtual > 0 ? 'inline-block' : 'none';
+                    document.getElementById('tourBtnProximo').textContent = this.etapaAtual === this.etapas.length - 1 ?
+                        'Concluir' : 'Próximo';
+                },
+                _removerDestaque: function() { document.querySelectorAll('.tour-highlight').forEach(function(el) { el
+                        .classList.remove('tour-highlight'); }); },
+                _posicionar: function(target) {
+                    var r = target.getBoundingClientRect();
+                    var tr = document.getElementById('tourTooltip').getBoundingClientRect();
+                    var top = r.bottom + 12,
+                        left = r.left + r.width / 2 - tr.width / 2;
+                    left = Math.min(Math.max(left, 10), window.innerWidth - tr.width - 10);
+                    top = Math.min(Math.max(top, 10), window.innerHeight - tr.height - 10);
+                    document.getElementById('tourTooltip').style.left = left + 'px';
+                    document.getElementById('tourTooltip').style.top = top + 'px';
+                }
+            };
+            window.Tour = Tour;
+
+            // ===== INICIALIZAÇÃO =====
+            function init() {
+                BancaManager.inicializar();
+                UI.carregarQuestoesPadrao();
+                UI.atualizarDashboardInline();
+                document.getElementById('btnAjuda').addEventListener('click', function() { Tour.iniciar(); });
+                // theme toggle dos botões já estão com onclick no HTML
+            }
+            document.addEventListener('DOMContentLoaded', init);
+            if (document.readyState === 'complete' || document.readyState === 'interactive') init();
+
+        })();
+    </script>
+
+</body>
+</html>
